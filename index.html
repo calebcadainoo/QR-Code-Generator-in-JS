@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>QR Code Generator</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+	<div id="option">
+		<div id="btn1" class="active">&#8230;</div>
+		<div id="btn2">&#9974;</div>
+	</div>
+
+	<div id="main">
+		<div id="box1">
+			<div id="inputs">
+				<input type="text" placeholder="Enter your text..." id="data">
+				<div id="msg">Hit Enter to generate QR Code</div>
+			</div>
+
+			<div id="outputbox">
+				<img src="qr-code.png" alt="">
+			</div>
+		</div>
+
+		<div id="box2">
+			
+		</div>
+	</div>
+
+	<!-- JS Logic -->
+	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+	<script>
+		var qrcode =new QRCode('outputbox');
+
+		function makeCode(){
+			var input = document.getElementById('data');
+			qrcode.makeCode(input.value);
+		}
+
+		$('#data').on('blur', function() {
+			makeCode();
+		}).on('keydown', function(e) {
+			if (e.keyCode == 13) {
+				makeCode();
+			}
+		});
+	</script>
+</body>
+</html>
